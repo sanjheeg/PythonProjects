@@ -2,14 +2,26 @@
 def addTask(task, taskList):
     extraValue = task.split(" ")[0]
     taskName = task.replace(extraValue, "")
-    taskNum = len(taskList) + 1
-    appendValue = str(taskNum) + " " + taskName
 
-    if(appendValue.__contains__("add")):
-        print("contains value")
-        appendValue = appendValue.replace("add ", "")
+    taskName = taskName.replace("add ", "")
 
-    taskList.append(appendValue)
+
+    if (taskName == ""):
+        print("type 'exit' if you'd like to exit")
+        while (taskName == ""):
+            addedTask = input("please enter todo item: ")
+
+
+            if(addedTask.__contains__("exit")):
+                break;
+
+
+            addedTask = str(len(taskList) + 1) + " " + addedTask
+            taskList.append(addedTask)
+
+    else:
+        appendValue = str(len(taskList) + 1) + " " + taskName
+        taskList.append(appendValue)
 
 
 def showTask():
