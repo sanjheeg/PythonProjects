@@ -47,6 +47,8 @@ print("Welcome to the todo app!")
 task = ""
 taskList =[]
 
+print("type 'exit' to exit\nif you would like to add multiple to-do's, simply enter 'add'")
+
 while (True):
     task = input("enter a task: add, show, complete, or exit:")
     if (task.__contains__("add")):
@@ -57,3 +59,6 @@ while (True):
         showTask()
     if(task.__contains__("complete")):
         completeTask(task)
+   if(task.__contains__("exit")):
+        print("thank you for using the to-do list app!")
+        break
