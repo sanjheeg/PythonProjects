@@ -53,6 +53,10 @@ print("type 'exit' to exit\nif you would like to add multiple to-do's, simply en
 
 while (True):
     task = input("enter a task: add, show, complete, or exit: ")
+    
+    file = open("data.txt", "r")
+    for item in file:
+        taskList.append(item)
 
     if (task.__contains__("add")):
         addTask(task, taskList)
