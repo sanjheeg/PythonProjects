@@ -1,20 +1,16 @@
-
 def addTask(task, taskList):
     extraValue = task.split(" ")[0]
     taskName = task.replace(extraValue, "")
 
     taskName = taskName.replace("add ", "")
 
-
     if (taskName == ""):
         print("type 'exit' if you'd like to exit")
         while (taskName == ""):
             addedTask = input("please enter todo item: ")
 
-
             if(addedTask.__contains__("exit")):
-                break;
-
+                break
 
             addedTask = str(len(taskList) + 1) + " " + addedTask
             taskList.append(addedTask)
@@ -22,6 +18,12 @@ def addTask(task, taskList):
     else:
         appendValue = str(len(taskList) + 1) + " " + taskName
         taskList.append(appendValue)
+
+    file = open("data.txt", "w")
+
+    #adds item in own line
+    for item in taskList:
+        file.writelines(item + "\n")
 
 
 def showTask():
@@ -50,7 +52,8 @@ taskList =[]
 print("type 'exit' to exit\nif you would like to add multiple to-do's, simply enter 'add'")
 
 while (True):
-    task = input("enter a task: add, show, complete, or exit:")
+    task = input("enter a task: add, show, complete, or exit: ")
+
     if (task.__contains__("add")):
         addTask(task, taskList)
     if (task.__contains__("exit")):
@@ -59,6 +62,6 @@ while (True):
         showTask()
     if(task.__contains__("complete")):
         completeTask(task)
-   if(task.__contains__("exit")):
+    if(task.__contains__("exit")):
         print("thank you for using the to-do list app!")
         break
