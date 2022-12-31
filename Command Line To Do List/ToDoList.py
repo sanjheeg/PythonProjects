@@ -40,6 +40,8 @@ def completeTask(task):
 
     for item in taskList:
         print(item)
+        
+    file.close()
 
 
 #start of main
@@ -57,6 +59,8 @@ while (True):
     file = open("data.txt", "r")
     for item in file:
         taskList.append(item)
+    
+    file.close()
 
     if (task.__contains__("add")):
         addTask(task, taskList)
