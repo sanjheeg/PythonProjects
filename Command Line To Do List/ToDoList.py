@@ -31,7 +31,8 @@ def showTask():
         print('your list is empty! Use "add" to add to it')
     else:
         for item in taskList:
-            print(item)
+            strippedItem = item.strip("\n")
+            print(strippedItem)
 
 
 def completeTask(task):
