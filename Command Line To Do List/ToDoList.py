@@ -19,11 +19,10 @@ def addTask(task, taskList):
         appendValue = str(len(taskList) + 1) + " " + taskName
         taskList.append(appendValue)
 
-    file = open("data.txt", "w")
-
     #adds item in own line
-    for item in taskList:
-        file.writelines(item + "\n")
+    with open("data.txt", "w") as file:
+        for item in taskList:
+            todos = file.writelines(item + "\n")
 
 
 def showTask():
@@ -57,9 +56,8 @@ print("type 'exit' to exit\nif you would like to add multiple to-do's, simply en
 while (True):
     task = input("enter a task: add, show, complete, or exit: ")
     
-    file = open("data.txt", "r")
-    for item in file:
-        taskList.append(item)
+    with open("data.txt", "r") as file:
+        taskList = file.readlines()
     
     file.close()
 
