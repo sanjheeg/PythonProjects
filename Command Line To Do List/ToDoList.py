@@ -1,3 +1,4 @@
+
 def addTask(task, taskList):
     extraValue = task.split(" ")[0]
     taskName = task.replace(extraValue, "")
@@ -12,17 +13,12 @@ def addTask(task, taskList):
             if(addedTask.__contains__("exit")):
                 break
 
-            addedTask = str(len(taskList) + 1) + " " + addedTask
+            addedTask = str(len(taskList) + 1) + " " + addedTask + "\n"
             taskList.append(addedTask)
 
     else:
-        appendValue = str(len(taskList) + 1) + " " + taskName
+        appendValue = str(len(taskList) + 1) + " " + taskName + "\n"
         taskList.append(appendValue)
-
-    #adds item in own line
-    with open("data.txt", "w") as file:
-        for item in taskList:
-            todos = file.writelines(item + "\n")
 
 
 def showTask():
@@ -40,12 +36,16 @@ def completeTask(task):
 
     for item in taskList:
         print(item)
-        
-    file.close()
 
 
-#start of main
+def editTask():
+    showTask()
+    taskIndex = int(input("which task number would you like to edit? ")) - 1
+    newTask = input("please enter new task: ")
+    taskList[taskIndex] = str(taskIndex + 1) + " " + newTask
 
+
+# start of main
 print("Welcome to the todo app!")
 
 task = ""
@@ -54,21 +54,35 @@ taskList =[]
 print("type 'exit' to exit\nif you would like to add multiple to-do's, simply enter 'add'")
 
 while (True):
-    task = input("enter a task: add, show, complete, or exit: ")
-    
     with open("data.txt", "r") as file:
         taskList = file.readlines()
-    
-    file.close()
+
+    task = input("enter a task: add, show, complete, edit, or exit: ")
 
     if (task.__contains__("add")):
         addTask(task, taskList)
-    if (task.__contains__("exit")):
+    elif (task.__contains__("exit")):
         break
-    if(task.__contains__("show")):
+    elif (task.__contains__("show")):
         showTask()
-    if(task.__contains__("complete")):
+    elif (task.__contains__("complete")):
         completeTask(task)
-    if(task.__contains__("exit")):
+    elif (task.__contains__("edit")):
+        editTask()
+    elif (task.__contains__("exit")):
         print("thank you for using the to-do list app!")
         break
+    else:
+        print("your input was invalid, please try again.")
+
+    i = 0
+    while ( i < len(taskList)):
+        if len(taskList[i]) == 1:
+            del taskList[i]
+        i+=1
+
+    print(taskList)
+    with open("data.txt", "w") as file:
+        for item in taskList:
+            file.writelines(item)
+
