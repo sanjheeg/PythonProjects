@@ -52,7 +52,7 @@ def exercise3():
     password = input("please enter a password: ")
     if len(password) > 7:
         print("the password is strong")
-    elif len(password == 7):
+    elif len(password) == 7:
         print("the password is OK")
     else:
         print("the password is weak")
