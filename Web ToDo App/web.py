@@ -20,8 +20,15 @@ def add_todo():
 sl.title("My Todo App")
 sl.subheader("will help you increase your productivity")
 
-for todo in todos:
-	sl.checkbox(todo)
+# creates checkboxes for all todos, removes if marked done
+for index, todo in enumerate(todos):
+	checkbox = sl.checkbox(todo, key=todo)
+	if checkbox:
+		todos.pop(index)
+		write_todos(todos)
+		del sl.session_state[todo]
+		# used for checkboxes, will rerun the code, removing above todo
+		sl.experimental_rerun()
 
 
 sl.text_input(label="", placeholder="add a new todo", on_change=add_todo, key="new")
